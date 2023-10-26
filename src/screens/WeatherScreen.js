@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ReactSVG } from 'react-svg';
 import TempCurrent from '../components/TempCurrent.json';
 import WeeklyForecast from '../components/WeeklyForecast';
+import humidityIcon from '../assets/humidity.svg'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -25,7 +27,7 @@ const WeatherScreen = () => {
     }
 
     const tempFunction = () => {
-        console.log(TempCurrent);
+        // console.log(TempCurrent);
         const dailyConditions = {
             mainTemp: {
                 metric: `${TempCurrent[0].Temperature.Metric.Value}${TempCurrent[0].Temperature.Metric.Unit}°`,
@@ -53,40 +55,35 @@ const WeatherScreen = () => {
         console.log(dailyForecast);
     }
 
-
     return (
-        <div className='w-full px-10'>
-            <div className='flex'>
+        <div className='w-full h-fit lg:h-screen px-20 pt-60 pb-20'>
+            <div className='flex h-4/5'>
                 <div>
                     <div>
 
                     </div>
                     {metric && dailyForecast !== undefined ? (
                         <div>
-                            <p>{`${cityData.city}, ${cityData.country}`}</p>
-                            <div className='flex'>
-                                <p>{dailyForecast.mainTemp.metric}</p>
+                            <p className='text-6xl'>{`${cityData.city}, ${cityData.country}`}</p>
+                            <div className='flex mt-10'>
+                                <p className='text-6xl'>{dailyForecast.mainTemp.metric}</p>
                                 <p>{weatherIcon}</p>
                             </div>
-                            <p>{`${tempRange}, Feels like ${dailyForecast.feelTemp.metric}`}</p>
-                        </div>
-                    ) : !metric && dailyForecast !== undefined ? (
-                        <div>
-                            <p>{`${cityData.city}, ${cityData.country}`}</p>
-                            <div className='flex'>
-                                <p>{dailyForecast.mainTemp.imperial}</p>
-                                <p>{weatherIcon}</p>
-                            </div>
-                            <p>{`${tempRange}, Feels like ${dailyForecast.feelTemp.imperial}`}</p>
+                            <p className='ml-3'>{`${tempRange}, Feels like ${dailyForecast.feelTemp.metric}`}</p>
                         </div>
                     ) : <></>}
-
                 </div>
+
                 <div>
+                    <div></div>
+                    <div>
+                        <ReactSVG src={humidityIcon}/>
+                        <p>{dailyForecast.humidity}%</p>
+                    </div>
+                    <div></div>
                     {sunHours !== null ? (
                         <div>
                             <div>{sunHours.sunrise} - {sunHours.sunset}</div>
-                            <div>{tempRange}</div>
                         </div>
                     ) : <></>}
                 </div>

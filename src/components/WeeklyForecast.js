@@ -74,10 +74,10 @@ const WeeklyForecast = () => {
 
 
     return (
-        <div className='flex gap-4'>
+        <div className='flex gap-4 flex-col lg:flex-row'>
             {forecast.length ? forecast.map((day, i) => {
                 return (
-                    <div key={i} className=' bg-secondaryBG rounded-xl w-1/5 py-2'>
+                    <div key={i} className=' bg-secondaryBG rounded-xl lg:w-1/5 py-2'>
                         <p>{day.weekDay}, {day.date}</p>
                         <div>
                             <div>{day.iconNumber}</div>
