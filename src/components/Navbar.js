@@ -5,6 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
+import { redirect } from 'react-router';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -47,7 +48,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar = () => {
-
+    const moveTo = (location) => {
+        redirect(`/${location}`)
+    };
 
     return (
         <AppBar>
@@ -61,11 +64,11 @@ const Navbar = () => {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </Search>
-                <MenuItem key='home' onClick={{}}>
+                <MenuItem key='home' onClick={moveTo('home')}>
                     <Typography textAlign="center">Home</Typography>
                 </MenuItem>
-                <MenuItem key='favorite' onClick={{}}>
-                    <Typography textAlign="center">Favorite</Typography>
+                <MenuItem key='favorite' onClick={moveTo('favorite')}>
+                    <Typography textAlign="center">Favorites</Typography>
                 </MenuItem>
             </div>
 

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getShortDate, getDayOfTheWeek, getShortTime } from '../helpers/dates';
 import TempData from './TempData.json';
 import { setSunHoursAction, setTempRangeAction, setWeatherIconAction } from '../redux/actions';
-import Favorite from '@mui/icons-material/Favorite';
+import WeatherIconHelper from './WeatherIconHelper';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -74,18 +74,16 @@ const WeeklyForecast = () => {
 
 
     return (
-        <div className='flex gap-4 flex-col lg:flex-row'>
+        <div className='flex w-full gap-4 flex-col lg:flex-row text-center h-2/5 justify-center items-center'>
             {forecast.length ? forecast.map((day, i) => {
                 return (
-                    <div key={i} className=' bg-secondaryBG rounded-xl lg:w-1/5 py-2'>
-                        <p>{day.weekDay}, {day.date}</p>
-                        <div>
-                            <div>{day.iconNumber}</div>
+                    <div key={i} className='flex flex-col justify-center items-center gap-4 bg-secondaryBG rounded-xl w-full lg:w-1/5 h-4/5 py-2 '>
+                        <p className='font-bold'>{day.weekDay}, {day.date}</p>
+                        <div >
+                            <WeatherIconHelper number={day.iconNumber} size={12}></WeatherIconHelper>
                             <p className='text-xl'>{day.minTemp} - {day.maxTemp}</p>
                         </div>
                         <div>{day.weatherText}</div>
-                        <Favorite className="material-symbols-rounded">
-                        </Favorite>
                     </div>
                 )
             }) :
