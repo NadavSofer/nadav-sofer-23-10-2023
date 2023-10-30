@@ -1,75 +1,29 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
+
+import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom';
 import { redirect } from 'react-router';
+import SearchBar from './SearchBar';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
 
 const Navbar = () => {
-    const moveTo = (location) => {
-        redirect(`/${location}`)
-    };
-
     return (
         <AppBar>
             <div className='py-2 flex'>
-                <Search>
-                    <SearchIconWrapper>
-                        <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Search…"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search>
-                <MenuItem key='home' onClick={moveTo('home')}>
-                    <Typography textAlign="center">Home</Typography>
-                </MenuItem>
-                <MenuItem key='favorite' onClick={moveTo('favorite')}>
-                    <Typography textAlign="center">Favorites</Typography>
-                </MenuItem>
+                <SearchBar/>
+                <Link to={'/'}>
+                    <Button key='home' sx={{ color: '#fff' }}>
+                        home
+                    </Button>
+                </Link>
+                <Link to={'/favorites'}>
+                    <Button key='favorite' sx={{ color: '#fff' }}>
+                        favorites
+                    </Button>
+                </Link>
             </div>
 
         </AppBar>

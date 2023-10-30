@@ -74,13 +74,13 @@ const WeeklyForecast = () => {
 
 
     return (
-        <div className='flex w-full gap-4 flex-col lg:flex-row text-center h-2/5 justify-center items-center'>
+        <div className='flex w-full gap-4 flex-col lg:flex-row text-center h-2/5 justify-center items-center pb-5 lg:pb-0'>
             {forecast.length ? forecast.map((day, i) => {
                 return (
                     <div key={i} className='flex flex-col justify-center items-center gap-4 bg-secondaryBG rounded-xl w-full lg:w-1/5 h-4/5 py-2 '>
                         <p className='font-bold'>{day.weekDay}, {day.date}</p>
                         <div >
-                            <WeatherIconHelper number={day.iconNumber} size={12}></WeatherIconHelper>
+                            <WeatherIconHelper number={day.iconNumber} size={3}></WeatherIconHelper>
                             <p className='text-xl'>{day.minTemp} - {day.maxTemp}</p>
                         </div>
                         <div>{day.weatherText}</div>
