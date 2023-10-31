@@ -11,7 +11,6 @@ const initialState = {
     metric: true,
     sunHours: null,
     tempRange:null,
-    weatherIcon: null,
 };
 
 export const weatherSlice = createSlice({
@@ -39,12 +38,16 @@ export const weatherSlice = createSlice({
         setWeatherIcon: (state, action) => {
             state.weatherIcon = action.payload;
         },
+        setCityData: (state, action) => {
+            state.cityData = action.payload;
+        },
+
     },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-    setSunHours, setTempRange, setWeatherIcon
+    setSunHours, setTempRange, setWeatherIcon, setCityData
 } = weatherSlice.actions;
 
 export default weatherSlice.reducer;

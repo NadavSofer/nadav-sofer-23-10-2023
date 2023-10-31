@@ -1,4 +1,4 @@
-import { setData, setSunHours, fetchDataStart, fetchDataSuccess, fetchDataFailure, setTempRange, setWeatherIcon} from "./weatherSlice";
+import { setData, setSunHours, fetchDataStart, fetchDataSuccess, fetchDataFailure, setTempRange, setWeatherIcon, setCityData} from "./weatherSlice";
 
 // export const fetchEvents = () => async (dispatch) => {
 //     dispatch(fetchDataStart());
@@ -29,6 +29,14 @@ export const setTempRangeAction = (range) => async (dispatch) => {
 export const setWeatherIconAction = (number) => async (dispatch) => {
     try {
         dispatch(setWeatherIcon(number))
+    } catch (error) {
+        
+    }
+}
+
+export const setCityDataAction = (number) => async (dispatch) => {
+    try {
+        dispatch(setCityData(number))
     } catch (error) {
         
     }

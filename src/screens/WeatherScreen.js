@@ -21,18 +21,49 @@ const WeatherScreen = () => {
     const sunHours = useSelector((state) => state.weatherData.sunHours);
     const tempRange = useSelector((state) => state.weatherData.tempRange);
     const metric = useSelector((state) => state.weatherData.metric);
-    const weatherIcon = useSelector((state) => state.weatherData.weatherIcon);
     const [dailyForecast, setDailyForecast] = useState();
     const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
 
     useEffect(() => {
-        tempFunction();
+        getWeather();
     }, [cityData]);
 
 
     const getWeather = () => {
-        fetch(`${BASE_URL}/currentconditions/v1/${cityData.cityKey}?apikey=${API_KEY}&metric=${metric}&details=true`);
+        fetch(`${BASE_URL}/currentconditions/v1/${cityData.cityKey}?apikey=${API_KEY}&metric=${metric}&details=true`)
+        .then(res => res.json())
+        .then(data => {
+            
+            const dailyConditions = {
+                mainTemp: {
+                    metric: `${data[0].Temperature.Metric.Value}${data[0].Temperature.Metric.Unit}°`,
+                    imperial: `${data[0].Temperature.Imperial.Value}${data[0].Temperature.Imperial.Unit}°`,
+                },
+                UVindex: {
+                    uvText: data[0].UVIndexText,
+                    uvNumber: data[0].UVIndex,
+                },
+                humidity: data[0].RelativeHumidity,
+                weatherIcon: data[0].WeatherIcon,
+                wind: {
+                    speed: {
+                        metric: `${data[0].Wind.Speed.Metric.Value}${data[0].Wind.Speed.Metric.Unit}`,
+                        imperial: `${data[0].Wind.Speed.Imperial.Value}${data[0].Wind.Speed.Imperial.Unit}`,
+                    },
+                    direction: data[0].Wind.Direction.Localized,
+                },
+                WeatherText: data[0].WeatherText,
+                feelTemp: {
+                    metric: `${data[0].RealFeelTemperature.Metric.Value}${data[0].RealFeelTemperature.Metric.Unit}°`,
+                    imperial: `${data[0].RealFeelTemperature.Imperial.Value}${data[0].RealFeelTemperature.Imperial.Unit}°`,
+                },
+            }
+            setDailyForecast(dailyConditions);
+        })
+        .catch(e => {
+            console.log(e);
+        })
     }
 
     const addToFavorites = () => {
@@ -46,6 +77,7 @@ const WeatherScreen = () => {
     }
 
     const removeFromFavorites = () => {
+        console.log(cityData);
         setFavorites((prevFavorites) => prevFavorites.filter(item => item.cityKey !== cityData.cityKey));
         console.log(favorites);
     }
@@ -62,6 +94,7 @@ const WeatherScreen = () => {
                 uvNumber: TempCurrent[0].UVIndex,
             },
             humidity: TempCurrent[0].RelativeHumidity,
+            weatherIcon: TempCurrent[0].WeatherIcon,
             wind: {
                 speed: {
                     metric: `${TempCurrent[0].Wind.Speed.Metric.Value}${TempCurrent[0].Wind.Speed.Metric.Unit}`,
@@ -76,7 +109,6 @@ const WeatherScreen = () => {
             },
         }
         setDailyForecast(dailyConditions);
-        // console.log(dailyForecast);
     }
 
     return (
@@ -104,7 +136,7 @@ const WeatherScreen = () => {
                                 <p className='text-6xl'>{`${cityData.city}, ${cityData.country}`}</p>
                                 <div className='flex mt-10 items-center gap-5 my-2'>
                                     <p className='text-6xl'>{dailyForecast.mainTemp.metric}</p>
-                                    <WeatherIconHelper number={weatherIcon} size='6' />
+                                    <WeatherIconHelper number={dailyForecast.weatherIcon} size='6' />
                                 </div>
                                 <p className='ml-3 text-xl mt-4'>{`${tempRange}, Feels like ${dailyForecast.feelTemp.metric}`}</p>
                             </div>
