@@ -175,7 +175,7 @@ const WeatherScreen = () => {
                 </div> : 
                 <p>Loading...</p>}
             </div>}
-            <WeeklyForecast></WeeklyForecast>
+            <WeeklyForecast/>
             <Snackbar
                 autoHideDuration={6000}
                 TransitionComponent={SlideTransition}
