@@ -1,18 +1,14 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
-import MenuItem from '@mui/material/MenuItem';
 import { useDispatch } from 'react-redux';
 import { setCityDataAction } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { Alert, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import Slide from '@mui/material/Slide';
 
 

@@ -2,10 +2,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getShortDate, getDayOfTheWeek, getShortTime } from '../helpers/dates';
-import TempData from './TempData.json';
-import { setSunHoursAction, setTempRangeAction, setWeatherIconAction } from '../redux/actions';
+import { setSunHoursAction, setTempRangeAction } from '../redux/actions';
 import WeatherIconHelper from './WeatherIconHelper';
-import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 

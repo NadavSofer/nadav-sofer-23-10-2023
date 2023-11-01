@@ -3,9 +3,9 @@ import WeatherIconHelper from './WeatherIconHelper';
 import { setCityDataAction } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Alert, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import Slide from '@mui/material/Slide';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 
 const Favorite = (props) => {

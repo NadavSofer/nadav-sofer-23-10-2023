@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import TempCurrent from '../components/TempCurrent.json';
 import WeeklyForecast from '../components/WeeklyForecast';
 import WeatherIconHelper from '../components/WeatherIconHelper';
 import humidityIcon from '../assets/humidity.svg';
@@ -12,7 +11,7 @@ import sunsetIcon from '../assets/sunset.svg';
 import favoriteEmptyIcon from '../assets/favoriteEmptyIcon.svg';
 import favoriteFullIcon from '../assets/favoriteFullIcon.svg';
 import useLocalStorage from '../helpers/storage';
-import { Alert, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { useSnackbar } from 'notistack';
 

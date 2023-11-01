@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom';
-import { redirect } from 'react-router';
 import SearchBar from './SearchBar';
 
 
