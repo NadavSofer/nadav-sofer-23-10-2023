@@ -11,6 +11,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useDispatch } from 'react-redux';
 import { setCityDataAction } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { Alert, Snackbar } from '@mui/material';
+import Slide from '@mui/material/Slide';
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -61,7 +64,7 @@ const SearchBar = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleSelectSearchResult = (data) => {
         dispatch(setCityDataAction(data));
@@ -70,16 +73,23 @@ const SearchBar = () => {
         setSearchInput('');
     }
 
+    const handleOpenSnack = (e) => {
+        enqueueSnackbar(`Failed to search`, {variant: 'error'});
+    }
+
+    function SlideTransition(props) {
+        return <Slide {...props} direction="up" />;
+    }
+
     useEffect(() => {
         if (searchInput.length) {
             fetch(`${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchInput}`)
                 .then(res => res.json())
                 .then(data => {
                     setSearchResult(data);
-                    console.log(data);
                 })
                 .catch(e => {
-                    console.log(e);
+                    handleOpenSnack(e, 'error');
                 })
         }
         else {
@@ -108,9 +118,12 @@ const SearchBar = () => {
                         </div>
                     ))}
                 </div>
-            )
-            }
-
+            )}
+            <Snackbar
+                autoHideDuration={500}
+                TransitionComponent={SlideTransition}
+                key={'testSnack'}
+            />
         </Stack>
     );
 }

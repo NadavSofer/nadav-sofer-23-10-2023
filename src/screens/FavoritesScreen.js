@@ -6,7 +6,7 @@ const FavoritesScreen = () => {
     const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
     return (
-        <div className='w-full h-fit lg:h-screen flex flex-col justify-center items-center pt-16 px-5'>
+        <div className='w-full h-screen flex flex-col justify-center items-center pt-16 px-5'>
             <div className='w-4/5 h-fit md:h-1/5'>
                 <p className='text-6xl border-b-2 pb-2'>Favorites</p>
             </div>

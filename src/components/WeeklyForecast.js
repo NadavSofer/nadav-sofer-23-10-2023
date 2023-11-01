@@ -6,6 +6,7 @@ import TempData from './TempData.json';
 import { setSunHoursAction, setTempRangeAction, setWeatherIconAction } from '../redux/actions';
 import WeatherIconHelper from './WeatherIconHelper';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 
 
@@ -16,6 +17,7 @@ const WeeklyForecast = () => {
     const metric = useSelector((state) => state.weatherData.metric);
     const [forecast, setForecast] = useState([]);
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
 
 
 
@@ -39,21 +41,22 @@ const WeeklyForecast = () => {
                         maxTemp: `${daily.Temperature.Maximum.Value}${daily.Temperature.Maximum.Unit}`,
                         minTemp: `${daily.Temperature.Minimum.Value}${daily.Temperature.Minimum.Unit}`,
                     }
-                    console.log(daily.IconPhrase);
                     setForecast(prevList => [...prevList, dailyData]);
 
                     const todaySunHours = { sunrise: getShortTime(data.DailyForecasts[0].Sun.Rise), sunset: getShortTime(data.DailyForecasts[0].Sun.Set) };
                     dispatch(setSunHoursAction(todaySunHours));
                 });
-                // console.log(forecast);
                 const TempRange = `${data.DailyForecasts[0].Temperature.Maximum.Value}${data.DailyForecasts[0].Temperature.Maximum.Unit}° - ${data.DailyForecasts[0].Temperature.Minimum.Value}${data.DailyForecasts[0].Temperature.Minimum.Unit}°`;
                 dispatch(setTempRangeAction(TempRange));
             })
             .catch(e => {
-                console.log(e);
+                handleOpenSnack(e);
             })
     }
 
+    const handleOpenSnack = (e, type) => {
+        enqueueSnackbar(`${e.message} 5 day forecast`, {variant: 'error'});
+    }
 
     return (
         <div className='flex w-full gap-4 flex-col lg:flex-row text-center h-2/5 justify-center items-center pb-5 lg:pb-0'>
