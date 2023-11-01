@@ -109,8 +109,8 @@ const SearchBar = () => {
             {searchInput && (
                 <div className='absolute bg-navBlue top-8 w-80 rounded-lg flex flex-col gap-4 justify-center p-5 z-0'>
                     {searchResult?.map((result, i) => (
-                        <div key={i} onClick={() => handleSelectSearchResult({ city: result.LocalizedName, country: result.Country.LocalizedName, cityKey: result.Key })}>
-                            <p >{result.LocalizedName}, {result.Country.LocalizedName}</p>
+                        <div className='cursor-pointer' key={i} onClick={() => handleSelectSearchResult({ city: result.LocalizedName, country: result.Country.LocalizedName, cityKey: result.Key })}>
+                            <p>{result.LocalizedName}, {result.Country.LocalizedName}</p>
                         </div>
                     ))}
                 </div>
