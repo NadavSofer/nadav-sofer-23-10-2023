@@ -11,7 +11,7 @@ import sunsetIcon from '../assets/sunset.svg';
 import favoriteEmptyIcon from '../assets/favoriteEmptyIcon.svg';
 import favoriteFullIcon from '../assets/favoriteFullIcon.svg';
 import useLocalStorage from '../helpers/storage';
-import { Snackbar } from '@mui/material';
+import { Alert, Snackbar } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { useSnackbar } from 'notistack';
 
@@ -100,6 +100,7 @@ const WeatherScreen = () => {
             {dailyForecast ? (
                 <div className='flex h-3/5 w-full lg:flex-row flex-col justify-center items-center mb-10 lg:mb-0'>
                     <div className='w-4/5 lg:w-1/3 py-12 flex justify-center items-center border-b-2 lg:border-b-0 lg:border-r-2 border-white'>
+
                         {metric && dailyForecast !== undefined ? (
                             <div>
                                 <div>
@@ -123,10 +124,9 @@ const WeatherScreen = () => {
                                 </div>
                                 <p className='ml-3 text-xl mt-4'>{`${tempRange}, Feels like ${dailyForecast.feelTemp.metric}`}</p>
                             </div>
-                            
                         ) : <></>}
                     </div>
-                    
+
                     <div className='w-3/5 md:w-full lg:w-2/3 flex flex-col flex-wrap items-center justify-center md:grid md:grid-cols-2 md:justify-items-center text-2xl gap-10 mt-10 lg:mb-0'>
                         <div className='flex justify-around md:justify-left items-center w-1/2 gap-5 '>
                             <img src={UVIndexIcon} className='w-1/3' alt='UVIndexIcon' />
@@ -150,7 +150,7 @@ const WeatherScreen = () => {
                                 <p>Wind</p>
                                 <p>{`${dailyForecast.wind.speed.metric} ${dailyForecast.wind.direction}`}</p>
                             </div>
-                            
+
                         </div>
                         {sunHours !== null ? (
                             <div className='flex justify-around md:justify-left items-center w-1/2 gap-5 '>
@@ -164,19 +164,18 @@ const WeatherScreen = () => {
                                     <p>Sunset</p>
                                     <p className='text-center -m-5 -pt-5'>{sunHours.sunset}</p>
                                 </div>
-                                
                             </div>
                         ) : <></>}
                     </div>
-                    <WeeklyForecast></WeeklyForecast>
                 </div>
             ) : <div>
                 {failedToLoad ? 
-                <div className='flex lg:items-center h-screen lg:h-full'>
+                <div className='flex lg:items-center'>
                     <p>Failed to load</p>
                 </div> : 
                 <p>Loading...</p>}
             </div>}
+            <WeeklyForecast></WeeklyForecast>
             <Snackbar
                 autoHideDuration={6000}
                 TransitionComponent={SlideTransition}
