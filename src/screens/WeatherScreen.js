@@ -11,7 +11,7 @@ import sunsetIcon from '../assets/sunset.svg';
 import favoriteEmptyIcon from '../assets/favoriteEmptyIcon.svg';
 import favoriteFullIcon from '../assets/favoriteFullIcon.svg';
 import useLocalStorage from '../helpers/storage';
-import { Alert, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { useSnackbar } from 'notistack';
 
