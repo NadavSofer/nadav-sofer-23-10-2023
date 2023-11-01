@@ -11,7 +11,7 @@ import SearchBar from './SearchBar';
 
 const Navbar = () => {
     return (
-        <AppBar>
+        <AppBar className='z-20'>
             <div className='py-2 flex'>
                 <SearchBar/>
                 <Link to={'/'}>

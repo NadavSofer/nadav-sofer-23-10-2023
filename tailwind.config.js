@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors: {
         mainBG: '#80B9FC',
-        secondaryBG: '#62A5F4'
+        secondaryBG: '#62A5F4',
+        navBlue: '#1976d2',
       }
     },
   },

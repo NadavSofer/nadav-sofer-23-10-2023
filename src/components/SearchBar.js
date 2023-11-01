@@ -88,7 +88,7 @@ const SearchBar = () => {
     }, [searchInput]);
 
     return (
-        <Stack spacing={2} sx={{ width: 300 }}>
+        <Stack spacing={2} sx={{ width: 300 }} className='pl-5'>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
@@ -101,7 +101,7 @@ const SearchBar = () => {
                 />
             </Search>
             {searchInput && (
-                <div className='absolute bg-blue-500 top-10 w-80 rounded-lg flex flex-col gap-4 justify-center p-5'>
+                <div className='absolute bg-navBlue top-8 w-80 rounded-lg flex flex-col gap-4 justify-center p-5 z-0'>
                     {searchResult?.map((result, i) => (
                         <div key={i} onClick={() => handleSelectSearchResult({ city: result.LocalizedName, country: result.Country.LocalizedName, cityKey: result.Key })}>
                             <p >{result.LocalizedName}, {result.Country.LocalizedName}</p>
