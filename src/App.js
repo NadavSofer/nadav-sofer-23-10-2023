@@ -1,5 +1,4 @@
 import './App.css';
-import { useSelector } from 'react-redux';
 import WeatherScreen from './screens/WeatherScreen';
 import FavoritesScreen from './screens/FavoritesScreen'
 import Navbar from './components/Navbar';
