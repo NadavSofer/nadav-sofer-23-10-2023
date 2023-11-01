@@ -126,7 +126,7 @@ const WeatherScreen = () => {
                             
                         ) : <></>}
                     </div>
-                    <WeeklyForecast></WeeklyForecast>
+                    
                     <div className='w-3/5 md:w-full lg:w-2/3 flex flex-col flex-wrap items-center justify-center md:grid md:grid-cols-2 md:justify-items-center text-2xl gap-10 mt-10 lg:mb-0'>
                         <div className='flex justify-around md:justify-left items-center w-1/2 gap-5 '>
                             <img src={UVIndexIcon} className='w-1/3' alt='UVIndexIcon' />
@@ -150,7 +150,7 @@ const WeatherScreen = () => {
                                 <p>Wind</p>
                                 <p>{`${dailyForecast.wind.speed.metric} ${dailyForecast.wind.direction}`}</p>
                             </div>
-
+                            
                         </div>
                         {sunHours !== null ? (
                             <div className='flex justify-around md:justify-left items-center w-1/2 gap-5 '>
@@ -168,6 +168,7 @@ const WeatherScreen = () => {
                             </div>
                         ) : <></>}
                     </div>
+                    <WeeklyForecast></WeeklyForecast>
                 </div>
             ) : <div>
                 {failedToLoad ? 
